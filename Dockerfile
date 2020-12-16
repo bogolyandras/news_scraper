@@ -9,10 +9,11 @@ COPY requirements.txt .
 # install dependencies
 RUN pip install -r requirements.txt
 
-COPY scrapy.cfg .
-
 # copy the content of the local src directory to the working directory
 COPY news_scraper/ ./news_scraper
 
+# copy the specific starter script
+COPY TheGuardian.py .
+
 # command to run on container start
-CMD [ "scrapy", "crawl", "theguardian" ]
+CMD [ "python", "TheGuardian.py" ]
